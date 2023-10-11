@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(length: 4, child:
+       Scaffold(
+      appBar: AppBar(
+        title: Text('WhatsApp'),
+        bottom: TabBar(
+          tabs: [
+           Tab(
+             child: Text('Chats'),
+           ),
+          Tab(
+            child: Text('Status'),
+          ),
+          Tab(
+            child: Text('Calls'),
+          ),
+          ],
+        ),
+
+             actions: [
+                Icon(Icons.camera_alt),
+               SizedBox(width: 25,),
+               Icon(Icons.search),
+               SizedBox(width: 10,),
+              PopupMenuButton(
+                icon: Icon(Icons.more_vert),
+                  itemBuilder: (context) =>[
+                    PopupMenuItem(
+                        value: 1,
+                        child: Text('New group')
+                    ),
+                    PopupMenuItem(
+                        value: 1,
+                        child: Text('New broadcast'),
+                    ),
+                    PopupMenuItem(
+                        value: 1,
+                        child: Text('Linked devices')
+                    ),
+                    PopupMenuItem(
+                        value: 1,
+                        child: Text('Starred messages')
+                    ),
+                    PopupMenuItem(
+                        value: 1,
+                        child: Text('Settings')
+                    ),
+                  ],
+              ),
+               SizedBox(width: 20,),
+             ],
+      ),
+
+         body: TabBarView(
+           children: [
+             ListView.builder(
+               itemCount: 20,
+                 itemBuilder: (context, index){
+                   return ListTile(
+                     leading: CircleAvatar(
+                       backgroundImage: NetworkImage('https://images.pexels.com/photos/12151398/pexels-photo-12151398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                     ),
+                     title: Text('Zamin Bhai'),
+                     subtitle: Text('Incholi hu khan hai '),
+                     trailing: Text('6:36 pm'),
+                   );
+
+                 }
+                 ),
+             ListView.builder(
+                 itemCount: 20,
+                 itemBuilder: (context, index){
+                   return ListTile(
+                     leading: Container(
+                       decoration: BoxDecoration(
+                         shape: BoxShape.circle,
+                         border: Border.all(
+                           color: Colors.green,
+                           width: 2
+                         )
+                       ),
+                       child: CircleAvatar(
+                         backgroundImage: NetworkImage('https://images.pexels.com/photos/12151398/pexels-photo-12151398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                       ),
+                     ),
+                     title: Text('Prateek sir'),
+                     subtitle: Text('Today, 7:38 am'),
+                   );
+
+                 }
+                 ),
+
+             ListView.builder(
+                 itemCount: 20,
+                 itemBuilder: (context, index){
+                   return ListTile(
+                     leading: CircleAvatar(
+                       backgroundImage: NetworkImage('https://images.pexels.com/photos/12151398/pexels-photo-12151398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                     ),
+                     title: Text('Ashish sir '),
+                     subtitle:  Row(
+                       children: [
+                         Icon(Icons.arrow_back,color: Colors.teal,),
+                         Text('Yesterday, 9:40 pm'),
+                       ],
+                     ),
+                     trailing: Icon(Icons.phone,color: Colors.teal),
+                   );
+                 }
+             ),
+           ],
+         ),
+       ),
+    );
+  }
+}
